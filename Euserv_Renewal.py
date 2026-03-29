@@ -236,8 +236,8 @@ class RenewalBot:
         msg["From"] = sender
         msg["To"] = recipient
         try:
-            server = smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT, timeout=HTTP_TIMEOUT_SECONDS)
-            # server.starttls()
+            server = smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=HTTP_TIMEOUT_SECONDS)
+            server.starttls()
             server.login(EMAIL_USERNAME, EMAIL_PASSWORD)
             server.sendmail(sender, [recipient], msg.as_string())
             server.quit()
